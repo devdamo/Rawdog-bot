@@ -224,10 +224,12 @@ class LinkedRolesAPI {
         });
 
         // Start server
-        this.app.listen(this.port, () => {
+        // Bind to 0.0.0.0 for deployment platforms (Railway, Render, etc.)
+        this.app.listen(this.port, '0.0.0.0', () => {
             console.log(`🌐 Linked Roles callback server running on port ${this.port}`);
             console.log(`📍 Callback URL: ${this.redirectUri}`);
             console.log(`💡 Add this URL to Discord Developer Portal OAuth2 Redirects!`);
+            console.log(`🚀 Server accessible at: http://0.0.0.0:${this.port}`);
         });
     }
 

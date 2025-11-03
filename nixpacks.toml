@@ -1,0 +1,21 @@
+# Nixpacks Configuration for Discord Bot with Linked Roles
+# This ensures proper deployment on Railway, Render, and other Nixpacks platforms
+
+[phases.setup]
+nixPkgs = ["nodejs-18_x"]
+
+[phases.install]
+cmds = ["npm ci --production=false"]
+
+[phases.build]
+cmds = ["npm run build:noop"]
+
+[start]
+cmd = "npm start"
+
+[variables]
+# Node.js environment
+NODE_ENV = "production"
+
+# Health check endpoint available at http://localhost:${PORT}/
+# The linked roles callback server serves this
