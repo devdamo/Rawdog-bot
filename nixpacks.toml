@@ -5,7 +5,8 @@
 nixPkgs = ["nodejs-18_x"]
 
 [phases.install]
-cmds = ["npm ci --production=false"]
+# npm ci ensures consistent installs from lock file (faster and more reliable)
+cmds = ["npm ci"]
 
 [phases.build]
 cmds = ["npm run build:noop"]
