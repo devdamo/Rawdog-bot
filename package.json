@@ -1,0 +1,62 @@
+{
+  "name": "enhanced-gaming-discord-bot",
+  "version": "2.0.0",
+  "description": "Enhanced Discord Gaming Server Bot with separated commands, role management, welcome system, gaming sessions, and video reactions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node start.js",
+    "dev": "nodemon start.js",
+    "direct": "node index.js",
+    "test": "node --check index.js && node start.js --check",
+    "lint": "echo 'No linter configured - install eslint if needed'",
+    "install-deps": "npm install",
+    "clean": "rm -rf node_modules package-lock.json && npm install",
+    "backup": "node -e \"const fs=require('fs'),path=require('path'); if(fs.existsSync('./bot_data')){const date=new Date().toISOString().slice(0,10); fs.mkdirSync('./backups',{recursive:true}); require('child_process').execSync(`cp -r ./bot_data ./backups/bot_data_${date}`); console.log('Backup created in ./backups/');}else{console.log('No bot_data to backup');}\"",
+    "dev-helper": "node dev-helper.js",
+    "create-command": "node dev-helper.js create",
+    "list-commands": "node dev-helper.js list",
+    "validate-commands": "node dev-helper.js validate",
+    "command-stats": "node dev-helper.js stats",
+    "refresh-commands": "node refresh-commands.js"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.74",
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "gaming",
+    "roles",
+    "welcome",
+    "reactions",
+    "sessions",
+    "canvas",
+    "buttons",
+    "slash-commands",
+    "separated-commands",
+    "modular"
+  ],
+  "author": {
+    "name": "devdamo",
+    "email": "contact@example.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/enhanced-gaming-discord-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/enhanced-gaming-discord-bot/issues"
+  },
+  "homepage": "https://github.com/yourusername/enhanced-gaming-discord-bot#readme"
+}
