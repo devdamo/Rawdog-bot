@@ -26,26 +26,33 @@ function log(message, color = colors.reset) {
 
 function checkEnvironment() {
     log('🔍 Checking environment...', colors.cyan);
-    
+
     // Check Node.js version
     const nodeVersion = process.version;
     const majorVersion = parseInt(nodeVersion.slice(1).split('.')[0]);
-    
+
     if (majorVersion < 16) {
         log(`❌ Node.js ${nodeVersion} detected. Please upgrade to Node.js 16 or higher.`, colors.red);
         process.exit(1);
     }
-    
+
     log(`✅ Node.js ${nodeVersion} - OK`, colors.green);
-    
-    // Check if .env file exists
-    if (!fs.existsSync('.env')) {
-        log('❌ .env file not found!', colors.red);
-        log('📝 Please copy .env.example to .env and configure your bot token.', colors.yellow);
+
+    // Check if .env file exists (optional in Docker/production)
+    if (fs.existsSync('.env')) {
+        log('✅ .env file found (loading from file)', colors.green);
+        // Load .env file if it exists
+        require('dotenv').config();
+    } else if (process.env.BOT_TOKEN) {
+        // Running in Docker/production with environment variables
+        log('✅ Environment variables detected (Docker/Production mode)', colors.green);
+    } else {
+        log('❌ No .env file or environment variables found!', colors.red);
+        log('📝 Please either:', colors.yellow);
+        log('   1. Create a .env file (for local development)', colors.yellow);
+        log('   2. Set environment variables (for Docker/Railway/Render)', colors.yellow);
         process.exit(1);
     }
-    
-    log('✅ .env file found', colors.green);
     
     // Check essential dependencies
     const essentialDeps = ['discord.js', 'dotenv', '@napi-rs/canvas'];
