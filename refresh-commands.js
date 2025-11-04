@@ -1,5 +1,9 @@
 // Quick script to force refresh Discord slash commands
-require('dotenv').config();
+// Load .env file if it exists (optional in Docker/production)
+const fs = require('fs');
+if (fs.existsSync('.env')) {
+    require('dotenv').config();
+}
 const { REST, Routes } = require('discord.js');
 const CommandLoader = require('./commands/index.js');
 

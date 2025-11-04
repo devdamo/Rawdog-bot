@@ -1,14 +1,19 @@
 // 🤖 Enhanced Discord Gaming Server Bot - SEPARATED COMMANDS VERSION
 // Features: Role panels, Welcome system, Video reactions, Gaming sessions, Persistent data
-require('dotenv').config();
 
-const { 
-    Client, 
-    GatewayIntentBits, 
-    SlashCommandBuilder, 
-    ActionRowBuilder, 
-    ButtonBuilder, 
-    ButtonStyle, 
+// Load .env file if it exists (optional in Docker/production)
+const fsSync = require('fs');
+if (fsSync.existsSync('.env')) {
+    require('dotenv').config();
+}
+
+const {
+    Client,
+    GatewayIntentBits,
+    SlashCommandBuilder,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
     StringSelectMenuBuilder,
     StringSelectMenuOptionBuilder,
     EmbedBuilder,
